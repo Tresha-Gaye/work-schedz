@@ -1,32 +1,27 @@
 var tasks = "";
 var taskBox = $(".task-box");
-// task box was clicked
-
-
-// var createTask = function(taskText) {
-//    var taskP = $("<p>")
-//    .addClass("badge badge-primary badge-pill")
-//    .text(text);
-
-//    taskBox.append(taskP);
-
-
-// }
-
-// append task p element to task box parent div
-$(".lock-box").on("click", "div", function() {
-   console.log(click);
-});
+var saveClickerEl = $(".lock-box");
 
 var taskInput = $("<textarea>")
    .attr("type", "text")
-   .addClass("form-control bg-transparent text-white border-0 ml-auto  justify-content-center")
+   .addClass("form-control bg-transparent text-white border-0 ml-auto justify-content-center")
    .val(tasks);
 
    taskBox.append(taskInput);
    taskInput.trigger("focus");
 
 
+// create submit function to save tasks
+
+   taskInput.submit(function(event) {
+      // alert("Handler for .submit() called.");
+      event.preventDefault();
+      console.log(event)
+   });
+   
+   saveClickerEl.click(function() {
+      taskInput.submit();
+   });
    // $(".list-group").on("click", "p", function() {
    //    var text = $(this)
    //      .text()
@@ -117,13 +112,31 @@ var dueTime = function () {
 
 // }
 
-var saveTasks = function(idNum) {
-   // localStorage.setItem("tasks", JSON.stringify(tasks));
-   var textValue = $("#text-" + idNum.toString()).val();
-   // console.log(textValue);
-   localStorage.setItem("text-" + idNum.toString(), textValue);
-   console.log(textValue);
-};
+// var saveTasks = function(idNum) {
+//    // localStorage.setItem("tasks", JSON.stringify(tasks));
+//    var textValue = $("#text-" + idNum.toString()).val();
+//    // console.log(textValue);
+//    localStorage.setItem("text-" + idNum.toString(), textValue);
+//    console.log(textValue);
+// };
+
+var saveTasks = function() {
+   localStorage.setItem("tasks", JSON.stringify(tasks));
+ };
 
 // var loadTasks = function() {
 //    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+// append task element to task box parent div
+// $(".lock-box").on("click", "div", function() {
+//    console.log(click);
+// });
+
+// $("#due-9)").submit(function() {
+//    var taskData = $(taskInput).val();
+//    console.log(taskData);
+// })
+
+// // save to localStorage
+// localStorage.setItem("taskData", JSON.stringify(taskData);
+// event.preventDefault();
