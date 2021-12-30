@@ -4,7 +4,9 @@ This application uses Third Party APIs such as Jquery, Bootstrap and Moment.js t
 
 View the deployed application by [clicking this link](https://tresha-gaye.github.io/work-schedz/).
 
-**Criteria and Accomplishment**
+## Criteria 
+
+** Required features **
 
 - the app is required to display the current dat at the top of the calendar. I added functionality to dynamically update the time every second because otherwise the time only changes when the page is refreshed. 
 - the app should include timeblocks for standard business hours (9:00 a.m. to 5:00 p.m.), which are color coded to indicate whether the timwblock is in the past, present or future.
@@ -15,6 +17,12 @@ Below is are screenshots of the app showing the functionality outside and within
 ![Outside of work hours](./assets/images/work-schedz-deployed.jpg)
 
 ![During work hours](./assets/images/work-schez-timed.jpg)
+
+** Accomplishments **
+
+Version 2 of the Work Day Scheduler has the following features:
+- semantic `textarea` elements were used instead of `div` + `form` elements previously used in version 1 to make it easier to create the click to save function.
+- updated and completed function to save to, and retrieve from, `localStorage`, including using a `for` loop to set the key/value pairs for each task-box class.   
 
 ## Contributing
 
