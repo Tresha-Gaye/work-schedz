@@ -2,35 +2,6 @@ var tasks = "";
 var taskBox = $(".task-box");
 var saveClickerEl = $(".lock-box");
 
-var taskInput = $("<textarea>")
-   .attr("type", "text")
-   .addClass("form-control bg-transparent text-white border-0 ml-auto justify-content-center")
-   .val(tasks);
-
-   taskBox.append(taskInput);
-   taskInput.trigger("focus");
-
-
-// create submit function to save tasks
-
-   taskInput.submit(function(event) {
-      // alert("Handler for .submit() called.");
-      event.preventDefault();
-      console.log(event)
-   });
-   
-   saveClickerEl.click(function() {
-      taskInput.submit();
-   });
-   // $(".list-group").on("click", "p", function() {
-   //    var text = $(this)
-   //      .text()
-   //      .trim();
-   //    // console.log(text);
-   //    var textInput = $("<textarea>")
-   //      .addClass("form-control")
-   //      .val(text);
-      
 // **Function to display current and time at the top of the calendar**
 
 // var currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -57,36 +28,22 @@ $(document).ready(function() {
 });
 
 
-// create new input element for tasks
+// Add click function to save user input in text area to localStorage
+   saveClickerEl.click(function(event) {
+      event.preventDefault();
+      console.log($(this).siblings("textarea").val()); // 'this' points to the button element, siblings are in the same div- need to get the input in textarea
+      console.log($(this).attr("id")); // finds the id attribute in the button element
+      localStorage.setItem($(this).attr("id"), $(this).siblings("textarea").val());
+   });
 
-//task box was clicked
 
-// $(".task-box").text("")
-// $("#due-9").click(function() {
-//    var taskInfo = $(".task-box")
-//    .text()
-//    .trim()
-// }
-
-   // var taskInput = (".task-box")
-   //    .attr("type", "text")
-   //    .addClass("task-input")
-   //    .val(tasks);
-
-// $(".task-box").on("click", "div", function() {
-//    // get current text
-//    var tasks = $(this)
-//      .text()
-//      .trim();
- 
-// var taskInput = $(".task-box")
-//    .attr("type", "text")
-//    .addClass("task-box")
-//    .val(tasks);
-
-//   // swap out elements
-//   $(this).replaceWith(taskInput);
-
+// function to get user inputs saved in localStorage so they persist after a refresh
+for (var i = 9; i < 18; i++) { 
+   console.log(localStorage.getItem(i)); // i = id of the button element (#9, #10, #11 etc)
+   console.log($("#due-" + i)); // due-x is the id of the textarea
+   $("#due-" + i).val(localStorage.getItem(i));
+};
+      
 // add color code to timeblocks for past, current or future events
 var dueTime = function () {
    var getDueTime = new Date ($.now());
@@ -107,36 +64,3 @@ var dueTime = function () {
       }
    }
 };
-
-// var addTask = function() {
-
-// }
-
-// var saveTasks = function(idNum) {
-//    // localStorage.setItem("tasks", JSON.stringify(tasks));
-//    var textValue = $("#text-" + idNum.toString()).val();
-//    // console.log(textValue);
-//    localStorage.setItem("text-" + idNum.toString(), textValue);
-//    console.log(textValue);
-// };
-
-var saveTasks = function() {
-   localStorage.setItem("tasks", JSON.stringify(tasks));
- };
-
-// var loadTasks = function() {
-//    tasks = JSON.parse(localStorage.getItem("tasks"));
-
-// append task element to task box parent div
-// $(".lock-box").on("click", "div", function() {
-//    console.log(click);
-// });
-
-// $("#due-9)").submit(function() {
-//    var taskData = $(taskInput).val();
-//    console.log(taskData);
-// })
-
-// // save to localStorage
-// localStorage.setItem("taskData", JSON.stringify(taskData);
-// event.preventDefault();
